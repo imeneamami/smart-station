@@ -87,3 +87,13 @@ bool Voyage::supprimer(int idvoyage){
     return qry.exec();
 }
 
+
+bool Voyage::modifier(){
+    QSqlQuery qry;
+    qry.prepare ("update VOYAGE" "SET IDVOYAGE =:idvoyage , NUMTRAIN=:numtrain ,"
+" ARRETD=:arretd, ARRETF=:arretf , NBRPLACE=:nbrplace , HEURE=:heure" );
+    return qry.exec();
+}
+
+
+

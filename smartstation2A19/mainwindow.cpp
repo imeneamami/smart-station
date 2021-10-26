@@ -4,6 +4,7 @@
 #include "connexion.h"
 #include <QIntValidator>
 #include <QMessageBox>
+#include <QSqlTableModel>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -36,7 +37,7 @@ void MainWindow::on_pb_ajouter_clicked()
     if (test)
 
     {
-
+        ui->ta_voyage->setModel(Etmp.afficher());
         QMessageBox::information(nullptr, QObject::tr("ajout voyage"),
         QObject::tr("voyage ajouté :"), QMessageBox::Cancel);
     }
@@ -52,10 +53,31 @@ void MainWindow::on_pb_supprimer_clicked()
 
     if (test)
      {
-       ui->ta_voyage->setModel(V1.afficher());
+       ui->ta_voyage->setModel(Etmp.afficher());
 
       QMessageBox::information(nullptr, QObject::tr(" suppression voyage "),
                              QObject::tr("voyage supprimé :"), QMessageBox::Cancel);
      }
+
+}
+
+void MainWindow::on_pb_modifier_clicked()
+{
+
+    if (ui->pb_modifier->isChecked())
+          {
+              ui->pb_modifier->setDisabled(true);
+              ui->pb_modifier->setText("Modifiable");
+              QSqlTableModel *tableModel= new QSqlTableModel();
+              tableModel->setTable("VOYAGE");
+              tableModel->select();
+              ui->ta_voyage->setModel(tableModel);
+          }
+          else
+          {
+              ui->pb_modifier->setText("Modifier");
+              ui->ta_voyage->setModel(V.afficher());
+
+          }
 
 }

@@ -23,6 +23,8 @@ private slots:
 
     void on_pb_supprimer_clicked();
 
+    void on_pb_modifier_clicked();
+
 private:
     Ui::MainWindow *ui;
     Voyage V;
