@@ -1,0 +1,16 @@
+#ifndef METRO_H
+#define METRO_H
+
+
+#inc
+
+class Metro
+{
+public:
+    Metro();
+    
+    int numero;
+    
+};
+
+#endif // METRO_H
