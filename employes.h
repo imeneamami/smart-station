@@ -3,7 +3,6 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-
 class Employes
 {
 
@@ -11,19 +10,28 @@ class Employes
 public:
     Employes();
     Employes(int,QString,QString,QString,QString,QString);
-    QString get_Prenom(){return Prenom;}
-    QString get_Nom(){return Nom;}
-    QString get_Adresse(){return Adresse;}
-    QString get_Email(){return Email;}
-    QString get_Age(){return Age;}
-    int get_Id(){return Id;}
+    int getId();
+    QString getPrenom(){return Prenom;}
+    QString getNom(){return Nom;}
+    QString getAdresse(){return Adresse;}
+    QString getMail(){return Mail;}
+    QString getAge(){return Age;}
+    void setId(int);
+    void setNom(QString);
+    void setPrenom(QString);
+    void setAge(QString);
+    void setAdresse(QString);
+    void setMail(QString);
+
+
     bool ajouter();
+    QSqlQueryModel* afficher();
     bool supprimer(int);
     bool Modifier(int);
-    QSqlQueryModel* afficher();
+
 private:
     int Id;
-    QString Prenom,Nom,Adresse, Email, Age ;
+    QString Prenom,Nom,Adresse, Mail, Age ;
 };
 
 #endif // EMPLOYES_H
