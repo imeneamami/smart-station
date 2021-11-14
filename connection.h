@@ -1,15 +1,15 @@
-#ifndef CONNECTION_H
-#define CONNECTION_H
+#ifndef CONNEXION_H
+#define CONNEXION_H
 #include <QSqlDatabase>
-#include <QSqlError>
-#include <QSqlQuery>
-
-class Connection
+class Connexion
 {
+private:
+    QSqlDatabase db;
 public:
-    Connection();
-    bool createconnect();
+    Connexion();
+    bool ouvrirConnexion();
+    void fermerConnexion();
+
 };
 
-#endif 
- 
+#endif // CONNEXION_H
