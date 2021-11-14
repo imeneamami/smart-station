@@ -1,107 +1,165 @@
-#include "employes.h"
+#include "employee.h"
+#include <QDebug>
+#include <QSqlDatabase>
+#include <QString>
 #include <QSqlQuery>
-#include <QtDebug>
-#include <QObject>
-Employes::Employes()
+#include <QMessageBox>
+
+employee::employee()
 {
-    Id=0;
-    Nom="";
-    Prenom="";
-    Adresse="";
-    Mail="";
-    Age="";
-
-
+    id=0;
+    nom="";
+    prenom="";
+    age=0;
+    mail="";
+    adresse="";
 }
-Employes::Employes(int Id,QString Nom, QString Prenom, QString Adresse, QString Mail, QString Age)
+employee::employee(int id,QString nom,QString prenom,int age,QString mail,QString adresse)
 {
-    this->Id=Id;
-    this->Nom=Nom;
-    this->Prenom=Prenom;
-    this->Mail=Mail;
-    this->Age=Age;
-    this->Adresse=Adresse;
-     Employes::getId();
-     Employes::getNom();
-     Employes::getPrenom();
-     Employes::getAge();
-     Employes::getAdresse();
-     Employes::getMail();
-
-     void setId(int Id);{this ->Id=Id;}
-     void setNom(QString Nom);{this->Nom=Nom;}
-     void setPrenom(QString Prenom);{this->Prenom=Prenom;}
-     void setAge(QString Age);{this->Age=Age;}
-     void setMail(QString Mail);{this->Mail=Mail;}
-     void setAdresse(QString Adresse);{this->Adresse=Adresse;}
-
-
-}
-bool Employes::ajouter()
-{
-     QSqlQuery querry;
-    QString Id_string=QString::number(Id);
-
-    querry.prepare("INSERT INTO Employes(ID, NOM, PRENOM, Adresse, Mail, Age)""VALUES(:Id, :Nom, :Prenom, :Adresse, :Mail,Age)");
-    querry.bindValue(":Id",Id_string);
-    querry.bindValue(":Nom",Nom);
-    querry.bindValue(":Prenom",Prenom);
-    querry.bindValue(":Adresse",Adresse);
-    querry.bindValue(":Mail",Mail);
-    querry.bindValue(":Age",Age);
-
-
-    return querry.exec();
-
-}
-bool Employes::supprimer(int Id)
-{
-    QSqlQuery querry;
-    querry.prepare("Delete from employes where Id=Id");
-    querry.bindValue(0,Id);
-    querry.bindValue(1,Nom);
-    querry.bindValue(2,Prenom);
-    querry.bindValue(5,Mail);
-    return querry.exec();
+  this->id=id;
+  this->nom=nom;
+  this->prenom=prenom;
+  this->age=age;
+  this->mail=mail;
+  this->adresse=adresse;
 }
 
-QSqlQueryModel* Employes::afficher()
+int employee::get_id(){return id;}
+QString employee::get_nom(){return nom;}
+QString employee::get_prenom(){return prenom ;}
+int employee::get_age(){return age;}
+QString employee::get_mail(){return mail ;}
+QString employee::get_adresse(){return adresse;}
+
+
+
+bool employee::ajouter()
 {
-    QSqlQueryModel *model= new QSqlQueryModel();
+QSqlQuery query;
 
-    model->setQuery("select * from Employes");
-    model->setHeaderData(0, Qt::Horizontal, QObject::tr("Identifiant"));
-    model->setHeaderData(1, Qt::Horizontal, QObject::tr("Nom"));
-    model->setHeaderData(2, Qt::Horizontal,QObject::tr("Prenom"));
-    model->setHeaderData(2, Qt::Horizontal,QObject::tr("Adresse"));
-     model->setHeaderData(2, Qt::Horizontal,QObject::tr("Mail"));
-      model->setHeaderData(2, Qt::Horizontal,QObject::tr("Age"));
-      return model;
+QString res= QString::number(id);
 
+query.prepare("INSERT INTO employee (id,nom,prenom,age,mail,adresse) "
+                    "VALUES (:id,:nom,:prenom,:age,:mail,:adresse)");
+
+query.bindValue(":id",res);
+query.bindValue(":nom",nom);
+query.bindValue(":prenom",prenom);
+query.bindValue(":age",age);
+query.bindValue(":mail",mail);
+query.bindValue(":adresse",adresse);
+
+return    query.exec();
 }
-bool Employes::Modifier(int Id)
+
+QSqlQueryModel * employee::afficher()
+{
+  QSqlQueryModel * model= new QSqlQueryModel();
+
+model->setQuery("select * from employee");
+model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
+return model;
+}
+
+bool employee::supprimer(int id)
 {
     QSqlQuery query;
-    QString Id_string= QString::number(Id);
-    query.prepare(" EMPLOYES SET NOM=:Nom,PRENOM=:Prenom,ADRESSE=:Adresse, MAIL=:Mail, AGE=:Age WHERE ID=:Id");
-    query.bindValue(0,Id);
-    query.bindValue(1,Nom);
-    query.bindValue(2,Prenom);
-    query.bindValue(3,Adresse);
-    query.bindValue(4,Mail);
-    query.bindValue(5,Age);
 
-    return query.exec();
+
+    QString res= QString::number(id);
+
+    query.prepare("Delete from employee where id= :id");
+    query.bindValue(":id", res);
+    return    query.exec();
 }
-void Employes::Mailing;
-     {
-if (ui->Mail->text().contains(QRegExp("^\w\@ \.]{2,4,5,6}"))) || ui->Mail
+
+
+
+
+bool employee::modifier(int id,QString nom,QString prenom,int age,QString mail,QString adresse)
+{ QSqlQuery query;
+    QString res= QString::number(id);
+
+    query.prepare("update evenement set id=:id,nom=:nom,prenom=:prenom,age=:age,mail=:mail,adresse=:adresse where id=:id");
+    query.bindValue(":id",res);
+    query.bindValue(":nom",nom);
+    query.bindValue(":prenom",prenom);
+    query.bindValue(":age",age);
+    query.bindValue(":mail",mail);
+    query.bindValue(":adresse",adresse);
+
+
+    return    query.exec();
+
+}
+
+QSqlQueryModel * employee::chercher_nom(QString N)
 {
-    ui->Mail->clear();
-    ui->Mail->setTexte("user@email.com");
-    return false;
+    QSqlQueryModel * model= new QSqlQueryModel();
+        model->setQuery("SELECT * FROM employee WHERE nom ='"+N+"' ;");
+        model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+        model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+        model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+        model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+        model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+        model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
 
+    return model ;
 }
-     else
-{               return true;
+QSqlQueryModel * employee::chercher_adresse(QString N)
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+
+    model->setQuery("SELECT * FROM employee WHERE adresse ='"+N+"' ;");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
+
+    return model ;
+}
+QSqlQueryModel * employee::trier_id()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * FROM employee ORDER BY id asc");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
+
+    return model;
+}
+QSqlQueryModel * employee::trier_nom()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * FROM employee ORDER BY nom asc");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
+
+    return model;
+}
+QSqlQueryModel * employee::trier_age()
+{
+    QSqlQueryModel * model= new QSqlQueryModel();
+    model->setQuery("select * FROM employee ORDER BY age asc");
+    model->setHeaderData(0, Qt::Horizontal, QObject::tr("id"));
+    model->setHeaderData(1, Qt::Horizontal, QObject::tr("nom"));
+    model->setHeaderData(2, Qt::Horizontal, QObject::tr("prenom"));
+    model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
+    model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
+    model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
+    return model;
 }
