@@ -1,37 +1,36 @@
-#ifndef EMPLOYES_H
-#define EMPLOYES_H
+#ifndef EMPLOYEE_H
+#define EMPLOYEE_H
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>
-class Employes
-{
 
-    
+class employee
+{
 public:
-    Employes();
-    Employes(int,QString,QString,QString,QString,QString);
-    int getId();
-    QString getPrenom(){return Prenom;}
-    QString getNom(){return Nom;}
-    QString getAdresse(){return Adresse;}
-    QString getMail(){return Mail;}
-    QString getAge(){return Age;}
-    void setId(int);
-    void setNom(QString);
-    void setPrenom(QString);
-    void setAge(QString);
-    void setAdresse(QString);
-    void setMail(QString);
+    employee();
+    employee(int,QString,QString,int,QString,QString);
+    int get_id();
+    QString get_nom();
+    QString get_prenom();
+    int get_age();
+    QString get_mail();
+    QString get_adresse();
 
 
     bool ajouter();
-    QSqlQueryModel* afficher();
+    QSqlQueryModel * afficher();
     bool supprimer(int);
-    bool Modifier(int);
+    bool modifier(int,QString,QString,int,QString,QString);
+
+    QSqlQueryModel * chercher_nom(QString);
+    QSqlQueryModel * chercher_adresse(QString);
+    QSqlQueryModel * trier_id();
+    QSqlQueryModel * trier_nom();
+    QSqlQueryModel * trier_age();
 
 private:
-    int Id;
-    QString Prenom,Nom,Adresse, Mail, Age ;
+    QString nom,prenom,mail,adresse;
+    int id,age;
 };
 
-#endif // EMPLOYES_H
+#endif // EMPLOYEE_H
