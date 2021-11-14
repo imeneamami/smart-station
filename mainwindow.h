@@ -1,11 +1,21 @@
    #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "employes.h"
+#include "employee.h"
+#include <QDialog>
+#include <QObject>
+#include <QMainWindow>
+
+#include <QPainter>
+#include <QPdfWriter>
+#include <QDesktopServices>
+#include <QUrl>
+
+#include <QVector>
 
 #include <QMainWindow>
-QT_BEGIN_NAMESPACE
 
-namespace Ui {class MainWindow;}
+QT_BEGIN_NAMESPACE
+namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
 class MainWindow : public QMainWindow
@@ -13,29 +23,45 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
 private slots:
+    void on_pushButton_ajouter_E_clicked();
 
-    void on_pb_ajouter_clicked();
+    void on_pushButton_supprimer_E_clicked();
 
-    void on_pb_supprimer_clicked();
+    void on_tableView_clicked(const QModelIndex &index);
 
-    void on_pb_modifier_clicked();
+    void on_pushButton_modifier_E_clicked();
 
+    void on_pushButton_rafraichir_E_clicked();
 
-    void on_pb_se_connecter_clicked();
+    void on_pushButton_quitter_clicked();
 
-    void on_le_mailing_clicked();
+    void on_pushButton_2_quitter_clicked();
 
-    void on_pb_envoyer_clicked();
+    void on_pushButton_rafraichir_clicked();
 
-    void on_pb_supprimer_2_clicked();
+    void on_pushButton_tri_id_clicked();
+
+    void on_pushButton_tri_nom_clicked();
+
+    void on_pushButton_tri_age_clicked();
+
+    void on_pushButton_chercher_type_clicked();
+
+    void on_pushButton_chercher_adresse_clicked();
+
+    void on_pushButton_pdf_clicked();
+
+    void makePlot();
+    QVector<double> Statistique();
+
+    void on_pushButton_statistique_clicked();
 
 private:
     Ui::MainWindow *ui;
-    Employes E;
+    employee tmp;
 };
-
 #endif // MAINWINDOW_H
