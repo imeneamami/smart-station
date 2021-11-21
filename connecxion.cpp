@@ -1,3 +1,4 @@
+
 #include "connexion.h"
 
 Connexion::Connexion()
@@ -14,5 +15,4 @@ if (db.open())
 return  test;
 }
 void Connexion::fermerConnexion()
-{db.close()
-    ;}
+{db.close();}
