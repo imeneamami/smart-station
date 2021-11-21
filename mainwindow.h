@@ -1,4 +1,4 @@
-   #ifndef MAINWINDOW_H
+ #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "employee.h"
 #include <QDialog>
@@ -60,8 +60,19 @@ private slots:
 
     void on_pushButton_statistique_clicked();
 
+    void on_pushButton_envoyer_mail_clicked();7
+    void update_label(); //slot permettant la mise à jour du label état de la lampe 1
+    void on_pushButton_clicked();  //boutoun ON
+    void on_pushButton_2_clicked();  //bouton OFF
+    void on_pushButton_3_clicked(); //bouton +
+    void on_pushButton_4_clicked(); //bouton -
+
+
+
 private:
     Ui::MainWindow *ui;
     employee tmp;
+    QByteArray data; //variable contenant les données reçues
+    Arduino A;
 };
 #endif // MAINWINDOW_H
