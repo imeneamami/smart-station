@@ -520,5 +520,5 @@ color:rgb(100, 0, 0);</string>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections/> 
 </ui>
