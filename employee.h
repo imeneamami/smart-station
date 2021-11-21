@@ -17,6 +17,7 @@ public:
     QString get_adresse();
 
 
+
     bool ajouter();
     QSqlQueryModel * afficher();
     bool supprimer(int);
