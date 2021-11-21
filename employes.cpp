@@ -161,5 +161,6 @@ QSqlQueryModel * employee::trier_age()
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("age"));
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
-    return model;
+    return model
+        ;
 }
