@@ -20,5 +20,6 @@ else
                                 "Click Cancel to exit."), QMessageBox::Cancel);
 
 
-    return a.exec();
+    return a.exec()
+        ;
 }
