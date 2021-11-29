@@ -73,6 +73,6 @@ private:
     Ui::MainWindow *ui;
     employee tmp;
     QByteArray data; //variable contenant les données reçues
-    Arduino A;
+    Arduino A; 
 };
 #endif // MAINWINDOW_H
