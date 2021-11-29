@@ -4,7 +4,7 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QMessageBox>
-
+  
 employee::employee()
 {
     id=0;
