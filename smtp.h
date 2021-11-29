@@ -61,6 +61,6 @@ private:
     quint16 port;
     enum states{Tls, HandShake ,Auth,User,Pass,Rcpt,Mail,Data,Init,Body,Quit,Close};
     int state;
-
+  
 };
 #endif
