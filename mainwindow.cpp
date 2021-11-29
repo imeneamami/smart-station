@@ -395,4 +395,4 @@ void MainWindow:: on_pushButton_3_clicked()
  A.write_to_arduino("2"); //envoyer 2 a arduino
 
 void MainWindow::on_pushButton_4_clicked()
-A.write_to_arduino("3"); //envoyer 3 à arduino
+A.write_to_arduino("3"); //envoyer 3 à arduino 
