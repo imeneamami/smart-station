@@ -6654,7 +6654,7 @@ protected:
   QPen mainPen() const;
 };
 Q_DECLARE_METATYPE(QCPItemBracket::BracketStyle)
-
+ 
 /* end of 'src/items/item-bracket.h' */
 
 
