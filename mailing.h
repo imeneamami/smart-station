@@ -1,6 +1,6 @@
 #ifndef MAILING_H
 #define MAILING_H
-
+ 
 #include <QObject>
 #include "smtp.h"
 
