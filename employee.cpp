@@ -136,7 +136,7 @@ QSqlQueryModel * employee::trier_id()
     model->setHeaderData(4, Qt::Horizontal, QObject::tr("mail"));
     model->setHeaderData(5, Qt::Horizontal, QObject::tr("adresse"));
 
-    return model;
+    return model;  
 }
 QSqlQueryModel * employee::trier_nom()
 {
