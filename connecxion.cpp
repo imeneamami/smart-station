@@ -16,3 +16,4 @@ return  test;
 }
 void Connexion::fermerConnexion()
 {db.close();}
+ 
