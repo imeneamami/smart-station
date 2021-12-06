@@ -4,7 +4,7 @@
 #include <QDialog>
 #include <QObject>
 #include <QMainWindow>
-
+  
 #include <QPainter>
 #include <QPdfWriter>
 #include <QDesktopServices>
