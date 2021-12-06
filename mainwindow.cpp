@@ -6,7 +6,7 @@
 #include "qcustomplot.h"
 #include <QVector>
 #include "smtp.h"
-
+ 
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
