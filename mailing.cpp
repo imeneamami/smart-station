@@ -7,6 +7,6 @@ mailing::mailing(QString adresse, QString message)
 }
 
 mailing::~mailing()
-{  
+{   
 
 }
