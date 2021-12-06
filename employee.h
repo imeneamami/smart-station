@@ -4,7 +4,7 @@
 #include <QSqlQuery>
 #include <QSqlQueryModel>
   
-class employee
+class employee 
 {
 public:
     employee();
