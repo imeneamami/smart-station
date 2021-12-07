@@ -396,3 +396,13 @@ void MainWindow:: on_pushButton_3_clicked()
 
 void MainWindow::on_pushButton_4_clicked()
 A.write_to_arduino("3"); //envoyer 3 à arduino 
+int ret=a.connect_arduino(); // lancer la connexion à arduino
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< a.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<a.getarduino_port_name();
+       break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+     QObject::connect(a.getserial(),SIGNAL(readyRead()),this,SLOT(update_label())); // permet de lancer
+     //le slot update_label suite à la reception du signal readyRead (reception des données).
