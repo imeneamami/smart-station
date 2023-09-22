@@ -1,31 +1,12 @@
-# smart-station
-#include <iostream>
-
-using namespace std;
-classe Fete 
+void Foo()
 {
-    Fete()
-    {
-        count<<la fete à commencé\n";
-        void invite()
-    {
-        
-    }
-    }cout<<tu vas rester\n";
-    Fete()
-    {
-        cout<<"ok! au revoire\n";
-    }
-
-int main()
-
-{
-    fete f;
-    cout << "super \n " << endl;
-    f invite ();
-    const<<non je dois rendre chez moi \n ";
+  vector<int> v;
+  v.push_back(1);
+  v.push_back(2);
+  v.push_back(3);
+  for_each(begin(v), end(v), [](int i) {
+    cout << i << " ";
+  });
 }
-
-    
-    return 0;
-}
+// Outputs:
+// 1 2 3
