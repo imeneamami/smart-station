@@ -6,7 +6,7 @@ void Foo()
   v.push_back(3);
   for_each(begin(v), end(v), [](int i) {
     cout << i << " ";
-  });
+  };
 }
 // Outputs:
 // 1 2 3
